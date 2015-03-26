@@ -1,22 +1,25 @@
 language: python
 python:
-  - 2.7
+- 2.7
 virtualenv:
   system_site_packages: true
 before_install:
-  - pip uninstall numpy -y || echo 'numpy not installed'
-  - sudo add-apt-repository -y ppa:cython-dev/master-ppa
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq cython python-numpy python-scipy
-  - sudo apt-get install libprotobuf-dev libeigen3-dev
-  - pip install cpplint
+- pip uninstall numpy -y || echo 'numpy not installed'
+- sudo add-apt-repository -y ppa:cython-dev/master-ppa
+- sudo apt-get update -qq
+- sudo apt-get install -qq cython python-numpy python-scipy
+- sudo apt-get install libprotobuf-dev libeigen3-dev
+- pip install cpplint
 env:
-  - FLAVOR=_cc
-  - FLAVOR=_cc DISTRIBUTIONS_USE_PROTOBUF=1
-  - FLAVOR=_cc_examples
-  - FLAVOR=_cy
+- FLAVOR=_cc
+- FLAVOR=_cc DISTRIBUTIONS_USE_PROTOBUF=1
+- FLAVOR=_cc_examples
+- FLAVOR=_cy
 install:
-  - make install$FLAVOR
-  - pip freeze
+- make install$FLAVOR
+- pip freeze
 script:
-  - make test$FLAVOR
+- make test$FLAVOR
+notifications:
+  slack:
+    secure: O5mlz9CSEArR8fXZtHmu+SW9nly82Iq3xjlDOkxCUK+dO3LhD3N5riRzEJR28cF5KoapeI7MyNS/WHzY/BJp0kjRsTZCNleFVTQTxjjUESsLzb5cLXGJzShiDhX9JmCwV2hf1X53WBrSwvsOB5Pt5gqYUbfWfiMctn0XK086IfU=
