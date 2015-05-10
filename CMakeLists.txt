@@ -18,7 +18,7 @@ else()
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++0x")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter -Wno-strict-aliasing")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-parameter -Wno-strict-aliasing")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -msse4.1")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffast-math -funsafe-math-optimizations")
 
@@ -42,7 +42,8 @@ if(DEFINED EXTRA_LIBRARY_PATH)
 endif()
 
 find_package(Eigen3 REQUIRED)
-include_directories(${EIGEN3_INCLUDE_DIRS})
+get_filename_component(PARENT_DIR ${EIGEN3_INCLUDE_DIR} PATH)
+include_directories(${PARENT_DIR})
 
 find_package(Yeppp)
 if(YEPPP_FOUND)
